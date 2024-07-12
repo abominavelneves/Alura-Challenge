@@ -5,7 +5,7 @@ No primeiro dia, foram realizadas pequenas modificações nos dados da UFRN. Nes
 ```python
 #Criando uma lista com todos os csv files
 
-file_path='D:/Projects1/7Days_of_Code/Data_Set/'
+file_path='C:/Users/Corrigirerro/OneDrive/Área de Trabalho/Project'
 emprestimos = os.listdir(file_path)
 emprestimos=emprestimos[1:len(emprestimos)-1]
 files = [file_path + str(elemento) for elemento in emprestimos]
