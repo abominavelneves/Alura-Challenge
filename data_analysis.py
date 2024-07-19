@@ -90,3 +90,13 @@ plt.ylabel('Número de Empréstimos')
 plt.xticks(emprestimos_mensais.index, rotation=45)
 plt.tight_layout()
 plt.show()
+
+#Descobrindo sobre os horários mais movimentados do dia
+dados['hora_do_emprestimo']=dados['data_emprestimo'].dt.hour
+horario=dados['hora_do_emprestimo'].value_counts().sort_index()
+plt.bar(horario.index,horario.values, color='skyblue')
+plt.title('Fluxo')
+plt.xlabel('Horário')
+plt.ylabel('Número de Empréstimos')
+plt.tight_layout()
+plt.show()

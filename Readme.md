@@ -75,6 +75,7 @@ plt.xticks(emprestimos_por_ano.index, rotation=0)
 plt.tight_layout()
 plt.show()
 ```
+<img src='C:\Users\Corrigirerro\OneDrive\Área de Trabalho\Project\emprestimos_anuais.png'>
 De forma similar a essa primeira parte foi realizado a mesma análise para os meses no mesmo período.
 ```python
 dados['mes_emprestimo']=dados['data_emprestimo'].dt.month
@@ -87,4 +88,17 @@ plt.xticks(emprestimos_mensais.index, rotation=45)
 plt.tight_layout()
 plt.show()
 ```
-<img src="D:/Projects1/7Days_of_Code/Data_Set/emprestimos_anuais.png">
+<img src='C:\Users\Corrigirerro\OneDrive\Área de Trabalho\Project\emprestimos_mensais.png'>
+
+Uma análise interessante de se fazer é sobre o fluxo diário na biblioteca para gerenciar melhor os horários dos funcionários.
+```python
+#Descobrindo sobre os horários mais movimentados do dia
+dados['hora_do_emprestimo']=dados['data_emprestimo'].dt.hour
+horario=dados['hora_do_emprestimo'].value_counts().sort_index()
+plt.bar(horario.index,horario.values, color='skyblue')
+plt.title('Fluxo')
+plt.xlabel('Horário')
+plt.ylabel('Número de Empréstimos')
+plt.tight_layout()
+plt.show()
+```
