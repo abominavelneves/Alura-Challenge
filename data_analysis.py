@@ -1,4 +1,5 @@
 import os
+import glob
 import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -6,21 +7,24 @@ import seaborn as sns
 
 #Criando uma lista com todos os csv files
 
-file_path='D:/Projects1/7Days_of_Code/Data_Set/'
-emprestimos = os.listdir(file_path)
-emprestimos=emprestimos[1:len(emprestimos)-1]
-files = [file_path + str(elemento) for elemento in emprestimos]
+file_path='C:/Users/Corrigirerro/OneDrive/Área de Trabalho/Project/'
+arquivo_csv=[]
+arquivos=os.listdir(file_path)
+for arquivo in arquivos:
+    if arquivo.endswith('.csv'):
+        if arquivo!='dados_exemplares.csv':
+            arquivo_csv.append(file_path+arquivo)
 
 #Colocando todos os dados de emprestimo em um único DataFrame
 
 data_set=pd.DataFrame()
-data_set= pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+data_set= pd.concat([pd.read_csv(f) for f in arquivo_csv], ignore_index=True)
 data_set.drop_duplicates(inplace=True)
 
 #Com os exemplares convertido em csv é possível mesclar os dois
 
 exemplares=pd.DataFrame()
-exemplares=pd.read_csv('D:/Projects1/7Days_of_Code/dados_exemplares.csv')
+exemplares=pd.read_csv(file_path + 'dados_exemplares.csv')
 dados=data_set.merge(exemplares)
 
 #Criando uma função que classifica as categorias
