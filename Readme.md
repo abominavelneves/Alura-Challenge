@@ -77,6 +77,7 @@ plt.show()
 ```
 <img src='C:\Users\Corrigirerro\OneDrive\Área de Trabalho\Project\emprestimos_anuais.png'>
 De forma similar a essa primeira parte foi realizado a mesma análise para os meses no mesmo período.
+
 ```python
 dados['mes_emprestimo']=dados['data_emprestimo'].dt.month
 emprestimos_mensais=dados['mes_emprestimo'].value_counts().sort_index()
