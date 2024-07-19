@@ -1,15 +1,18 @@
 ## 7DaysofCode - Desafio da Alura
 Nesse desafio de uma semana a Alura disponibilizou dados dos empréstimos da biblioteca da UFRN desde o primeiro semestre de 2010 até o primeiro semestre de 2020. A ideia do desafio é fazer uma análise destes dados usando Python para tirar insigths para melhorias da biblioteca. A cada dia foi dado um novo desafio para encontrar novas interpretações dos dados.
 ### Day One
-No primeiro dia, foram realizadas pequenas modificações nos dados da UFRN. Nessa etapa inicial, as tabelas de cada semestre foram organizadas em um Data Frame junto com a identificação dos exemplares.
+No primeiro dia, foram realizadas pequenas modificações nos dados da UFRN. Nessa etapa inicial, as tabelas de cada semestre foram organizadas em um Data Frame junto com a identificação dos exemplares. Já de início tive alguns problemas com os aqrquivos csv pois na mesma pasta tinha mais arquivos que nã eram csv. Para contornar isso adicionei uma parte nova.
 ```python
-#Criando uma lista com todos os csv files
-
-file_path='C:/Users/Corrigirerro/OneDrive/Área de Trabalho/Project'
-emprestimos = os.listdir(file_path)
-emprestimos=emprestimos[1:len(emprestimos)-1]
-files = [file_path + str(elemento) for elemento in emprestimos]
-
+file_path='C:/Users/Corrigirerro/OneDrive/Área de Trabalho/Project/'
+arquivo_csv=[]
+arquivos=os.listdir(file_path)
+for arquivo in arquivos:
+    if arquivo.endswith('.csv'):
+        if arquivo!='dados_exemplares.csv':
+            arquivo_csv.append(file_path+arquivo)
+```
+Depois desse pequen o desvio todos os csv's foram colocados em um mesmo DataFrame para análise.
+```python
 #Colocando todos os dados de emprestimo em um único DataFrame
 
 data_set=pd.DataFrame()
@@ -19,7 +22,7 @@ data_set.drop_duplicates(inplace=True)
 #Com os exemplares convertido em csv é possível mesclar os dois
 
 exemplares=pd.DataFrame()
-exemplares=pd.read_csv('D:/Projects1/7Days_of_Code/dados_exemplares.csv')
+exemplares=pd.read_csv(file_path + 'dados_exemplares.csv')
 dados=data_set.merge(exemplares)
 ```
 ### Desafio do Dia 2
